@@ -11,6 +11,28 @@ We want to set up a common "environment" for everyone to make sure that we're al
 
 We'll do most of our work on UChicago's linux servers because that provides a common operating system. 
 
+We only have to set this environment up once.
+
+1. ssh to CNETID.fe.ai.cs.uchicago.edu
+2. Run:
+
+```
+conda create --name video_translation python=3.7
+conda activate video_translation
+conda install pytorch torchvision torchaudio cudatoolkit=11.0 -c pytorch
+```
+3. Check that GPU is visible:
+
+First make sure that you enter into a GPU node. To enter, you need to execute a `srun` command, like the one below.
+
+Run Python and then execute 
+```
+import torch
+torch.cuda.is_available()
+```
+
+It should say `True`.
+
 
 
 # Computing
@@ -19,7 +41,9 @@ Jin has access to a lot of GPU computing resources, but he doesn't have the abil
 
 ## UChicago Linux
 
-There's GPU resources at linux.cs.uchicago.edu, but it's limited in many ways. You can use this to work on / test out your code / debug, but DO NOT run long-lasting code. If you want to make a long run, please send the script to Jin and Jin will run that script on his computing resources.
+There's GPU resources at fe.ai.cs.uchicago.edu, but it's limited in many ways. You can use this to work on / test out your code / debug, but DO NOT run long-lasting code. If you want to make a long run, please send the script to Jin and Jin will run that script on his computing resources.
+
+Also, not many people know about the GPU resources, so it's best not to share that the the GPU resources exist to other people. The more people who use the resources, the less resources you have to use.
 
 
 ## Process For Accessing GPU Compute
@@ -27,8 +51,8 @@ There's GPU resources at linux.cs.uchicago.edu, but it's limited in many ways. Y
 This is a very simple starting command:
 
 ```
-ssh UCHICAGOID@linux1.cs.uchicago.edu
-srun -p titan --pty --cpus-per-task 4 --mem 500 -t 0-01:00 /bin/bash
+ssh UCHICAGOID@fe.ai.cs.uchicago.edu
+srun -p general --gres=gpu:1 --pty --cpus-per-task 4 --mem 500 -t 0-01:00 /bin/bash
 ```
 
 If you want an explaination on what this is doing, check [this](https://howto.cs.uchicago.edu/slurm#interactive_jobs) out. 
