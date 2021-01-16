@@ -20,6 +20,8 @@ We only have to set this environment up once.
 conda create --name video_translation python=3.7
 conda activate video_translation
 conda install pytorch torchvision torchaudio cudatoolkit=11.0 -c pytorch
+conda install matplotlib scikit-image scikit-learn scipy
+pip install opencv-contrib-python
 ```
 3. Check that GPU is visible:
 
@@ -71,4 +73,17 @@ We’ll push all our code [here](https://github.com/MLUChicago/VideoTranslation)
 By implementing this process, this reduces the amount of conflict that you will have with your teammates.
 
 ## Notes
-Please don't push large files.
+Please don't push large files to your git repo. For example, do not push datasets to the repositories.
+
+To ignore certain files, put those files in `.gitignore`.
+
+
+
+# Things To Keep In Mind
+
+
+
+
+# Acknowledgements
+
+This work is a modification of https://github.com/jiupinjia/SkyAR.
